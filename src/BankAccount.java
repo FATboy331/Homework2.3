@@ -13,17 +13,16 @@ public class BankAccount {
     }
     public Double withDraw(int sum) throws LimitException {
         if(sum > amount){
-            throw new LimitException("Сумма снятия больше чем остаток",this.amount);
+            Double rem = this.amount;
+            this.amount -= this.amount;
+            throw new LimitException("Произошло сниятия остатка " + rem, this.amount);
+
         }
        this.amount -= sum;
-       return this.amount;
+
+        return this.amount;
 
 
-    }
-    public void withDrawRemaining() {
-        Double rem = this.amount;
-        this.amount -= this.amount;
-        System.out.println("Произошло сниятия остатка " + rem);
     }
 
 
